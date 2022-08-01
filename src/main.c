@@ -16,19 +16,10 @@ static void scan_filter_match(struct bt_scan_device_info *device_info,
 	return;
 }
 
-static void scan_filter_no_match(struct bt_scan_device_info *device_info,
-	struct bt_scan_filter_match *filter_match, bool connectable)
-{
-	/* TODO disable in production 
-	printk("scan_filter_no_match\n");
-	*/
-	return;
-}
+BT_SCAN_CB_INIT(scan_cb, scan_filter_match, NULL, NULL, NULL);
 
-BT_SCAN_CB_INIT(scan_cb, scan_filter_match, scan_filter_no_match, NULL, NULL);
-
-static const uint8_t mfg_data_array[] = { 0x41, 0x01 };
-struct bt_scan_manufacturer_data mfg_data = {
+static uint8_t mfg_data_array[] = { 0x41, 0x01 };
+static struct bt_scan_manufacturer_data mfg_data = {
 	.data = mfg_data_array,
 	.data_len = 2
 };
