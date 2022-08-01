@@ -12,8 +12,20 @@
 static void scan_filter_match(struct bt_scan_device_info *device_info,
 	struct bt_scan_filter_match *filter_match, bool connectable)
 {
+	char addr[BT_ADDR_LE_STR_LEN];
 
-	printk("scan_filter_match\n");
+	if (device_info != NULL) {
+		if (device_info->recv_info != NULL) {
+			bt_addr_le_to_str(device_info->recv_info->addr, addr, sizeof(addr));
+
+			printk("address:%s,sid:%d,rssi:%d,tx_power:%d,adv_type:%d,adv_props:%d,interval:%d,primary_phy:%d,secondary_phy:%d\n",
+				addr,
+				device_info->recv_info->sid, device_info->recv_info->rssi,device_info->recv_info->tx_power, 
+				device_info->recv_info->adv_type, device_info->recv_info->adv_props, device_info->recv_info->interval, 
+				device_info->recv_info->primary_phy, device_info->recv_info->secondary_phy);
+		}
+
+	};
 	return;
 }
 
