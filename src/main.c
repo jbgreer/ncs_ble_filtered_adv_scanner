@@ -34,7 +34,7 @@ BT_SCAN_CB_INIT(scan_cb, scan_filter_match, NULL, NULL, NULL);
 
 
 /* create struct with manufacturer data to be matched */
-static uint8_t mfg_data_array[] = { 0x41, 0x01 };
+static uint8_t mfg_data_array[] = { 0x4C, 0x00 };
 static struct bt_scan_manufacturer_data mfg_data = {
 	.data = mfg_data_array,
 	.data_len = 2
